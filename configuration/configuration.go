@@ -46,10 +46,10 @@ func Init(configPath string) {
 	// Get default data path if none was provided
 	if configPath == "" {
 		configPath = getDefaultArduinoDataDir()
+		viper.AddConfigPath(configPath)
+	} else {
+		viper.AddConfigPath(filepath.Dir(configPath))
 	}
-
-	// Add paths where to search for a config file
-	viper.AddConfigPath(filepath.Dir(configPath))
 
 	// Bind env vars
 	viper.SetEnvPrefix("ARDUINO")
